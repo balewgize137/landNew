@@ -5,13 +5,18 @@ import { useSelector } from 'react-redux'
 // Components
 import Navbar from './components/Layout/Navbar'
 import Footer from './components/Layout/Footer'
-import LandPage from './pages/Services/LandPage'
+// --- 1. REMOVE the old LandPage import ---
+// import LandPage from './pages/Services/LandPage' 
 import LoginPage from './pages/Auth/LoginPage'
 import RegisterPage from './pages/Auth/RegisterPage'
 import ProtectedRoute from './components/Auth/ProtectedRoute'
 import LoadingSpinner from './components/UI/LoadingSpinner'
 import LandingPage from './pages/LandingPage';
 import LandProcessesPage from './pages/Services/LandProcessesPage';
+
+// --- 2. ADD the new LandServices import ---
+import LandServices from './pages/LandServices';
+
 
 function App() {
   const { loading } = useSelector((state) => state.auth)
@@ -31,7 +36,10 @@ function App() {
         <Routes>
           {/* LandingPage is now the main entry point */}
           <Route path="/" element={<LandingPage />} />
-          <Route path="/services/land" element={<ProtectedRoute><LandPage /></ProtectedRoute>} />
+          
+          {/* --- 3. UPDATE the route to use the new page and remove protection for testing --- */}
+          <Route path="/services/land" element={<LandServices />} />
+
           <Route path="/services/land/processes" element={<LandProcessesPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
@@ -57,4 +65,4 @@ function App() {
   )
 }
 
-export default App 
+export default App
